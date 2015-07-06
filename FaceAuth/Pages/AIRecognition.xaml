@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="FaceAuth.Pages.AIRecognition"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Grid Style="{StaticResource ContentRoot}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0">
+            <StackPanel MinWidth="200">
+                <TextBlock Text="MS AI Recognition" Style="{StaticResource Heading2}"/>
+                <Grid Margin="0 20 0 0">
+                    <Image x:Name="_imgSource" Width="320" Height="240" HorizontalAlignment="Left"/>
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock >
+                        <Run Text="Person Identified: "/>
+                        <Run Text="{Binding PersonRecognized}"/>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <ProgressBar Grid.Row="1" x:Name="_progressRec" Width="300" IsIndeterminate="True"/>
+        
+        <ListBox Grid.Column="1" ItemsSource="{Binding Pictures}" Margin="0 40 0 0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding ImgSource}"/>
+                        <StackPanel Margin="6 0 0 0">
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock >
+                                <Run Text="Is Verified: "/>
+                                <Run Text="{Binding IsVerified}"/>
+                            </TextBlock>
+                            <TextBlock Text="{Binding Confidence}"/>
+                        </StackPanel>                        
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+    </Grid>
+</UserControl>
